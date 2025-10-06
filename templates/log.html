@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zubo Raku - 履歴</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <h1>Zubo Raku</h1>
+    <p class="subtitle">できたらえらい、できなくてもえらい</p>
+    <nav class="menu">
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('todo') }}">Todo</a>
+      <a href="{{ url_for('log') }}" class="active">Log</a>
+      <a href="{{ url_for('edit') }}">edit</a>
+      <a href="{{ url_for('register') }}">register</a>
+    </nav>
+  </header>
+
+  <!-- メイン内容 -->
+  <main class="log-content">
+    <h2>履歴</h2>
+
+    <!-- フィルター -->
+    <div class="log-filter">
+      <div class="filter-group">
+        <label for="period">期間</label>
+        <select id="period">
+          <option>7日間</option>
+          <option>30日間</option>
+          <option>全期間</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="category">カテゴリ</label>
+        <select id="category">
+          <option>すべて</option>
+          <option>掃除</option>
+          <option>洗濯</option>
+          <option>料理</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 件数 -->
+    <div class="log-stats">
+      <div class="stat">
+        <span class="count success">0</span>
+        <p>達成件数</p>
+      </div>
+      <div class="stat">
+        <span class="count skip">0</span>
+        <p>スキップ件数</p>
+      </div>
+    </div>
+
+    <!-- 履歴なしメッセージ -->
+    <div class="log-empty">
+      <p>履歴がありません</p>
+    </div>
+  </main>
+</body>
+</html>

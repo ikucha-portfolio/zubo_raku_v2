@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zubo Raku - 今日のやること</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Zubo Raku</h1>
+    <p class="subtitle">できたらえらい、できなくてもえらい</p>
+    <nav class="menu">
+  <a href="{{ url_for('index') }}">Home</a>
+  <a href="{{ url_for('todo') }}" class="active">Todo</a>
+  <a href="{{ url_for('log') }}">Log</a>
+  <a href="{{ url_for('edit') }}">edit</a>
+  <a href="{{ url_for('register') }}">register</a>
+</nav>
+  </header>
+
+  <main>
+    <div class="todo-header">
+      <h2>今日のやること</h2>
+      <a href="{{ url_for('index') }}" class="back-link">← Homeへ戻る</a>
+    </div>
+
+    <p class="date-text">{{ today }}</p>
+    <p class="message">今日もズボラにキラリ✨</p>
+
+    <section class="todo-task">
+      <div class="task-item">
+        <input type="checkbox" id="task1">
+        <label for="task1">🧹 風呂掃除</label>
+        <div class="task-buttons">
+          <button class="btn done">完了</button>
+          <button class="btn next">明日へ</button>
+          <button class="btn skip">スキップ</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="today-message">
+      <p class="title">今日のひとこと</p>
+      <p class="text">今日の自分にお疲れさま✨</p>
+    </div>
+
+    <button class="btn-clear">完了を消す</button>
+  </main>
+</body>
+</html>
