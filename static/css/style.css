@@ -577,3 +577,16 @@ footer .progress-info {
     min-height: 44px;
   }
 }
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-left: 6px;
+}
+.dot.active {
+  background-color: #16a34a; /* 緑（今日対象） */
+  box-shadow: 0 0 6px rgba(22, 163, 74, 0.6);
+}
