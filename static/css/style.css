@@ -245,6 +245,13 @@ body {
   border-radius: 0.8rem;
 }
 
+.category-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem; /* カテゴリ間の余白 */
+}
+
 /* =========================================
    📱 Responsive
    ========================================= */

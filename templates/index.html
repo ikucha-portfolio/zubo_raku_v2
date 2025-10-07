@@ -45,10 +45,23 @@
       </div>
 
       <div class="task-list">
-        {% for t in tasks %}
-          <button>{{ t.display_name or t.subtask }}</button>
-        {% endfor %}
-      </div>
+  {% set grouped_by_category = {} %}
+  {% for t in tasks %}
+    {% if t.category not in grouped_by_category %}
+      {% set _ = grouped_by_category.update({t.category: []}) %}
+    {% endif %}
+    {% set _ = grouped_by_category[t.category].append(t.display_name) %}
+  {% endfor %}
+
+  {% for category, subtasks in grouped_by_category.items() %}
+    <div class="category-block">
+      {% for sub in subtasks %}
+        <button>{{ sub }}</button>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+
 
       <div class="progress-bar">
         <div class="bar" style="width:0%;"></div>
