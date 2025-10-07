@@ -3,56 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zubo Raku - 登録</title>
+  <title>新しいタスク - Zubo Raku</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+
   <!-- ヘッダー -->
-  <header>
-    <h1>Zubo Raku</h1>
-    <p class="subtitle">できたらえらい、できなくてもえらい</p>
-    <nav class="menu">
-      <a href="{{ url_for('index') }}">Home</a>
-      <a href="{{ url_for('todo') }}">Todo</a>
-      <a href="{{ url_for('log') }}">Log</a>
-      <a href="{{ url_for('edit') }}">edit</a>
-      <a href="{{ url_for('register') }}" class="active">register</a>
-    </nav>
+  <header class="header">
+    <h1>新しいタスク</h1>
+    <p class="subtitle">新しいタスクを登録しましょう</p>
   </header>
 
-  <main class="register-content">
-    <h2>新規タスク</h2>
+  <!-- メイン -->
+  <main class="main-content">
 
-    <form class="register-form">
-      <label>タスク名 *</label>
-      <input type="text" placeholder="例：風呂掃除">
+    <form action="#" method="post" class="register-form">
 
-      <label>カテゴリ</label>
-      <select>
-        <option>掃除</option>
-        <option>洗濯</option>
-        <option>料理</option>
+      <label for="task_name">タスク名 <span class="required">*</span></label>
+      <input type="text" id="task_name" name="task_name" placeholder="例：リビング掃除" required>
+
+      <label for="category">カテゴリ <span class="required">*</span></label>
+      <select id="category" name="category" required>
+        <option value="" disabled selected>カテゴリを選択してください</option>
+        <option value="掃除">掃除</option>
+        <option value="洗濯">洗濯</option>
+        <option value="料理">料理</option>
       </select>
 
-      <label>頻度</label>
-      <div class="radio-group">
-        <label><input type="radio" name="frequency" checked> 毎日</label>
-        <label><input type="radio" name="frequency"> 3日おき</label>
-        <label><input type="radio" name="frequency"> 週一</label>
-      </div>
-
-      <label>ラク度</label>
-      <select>
-        <option>1 - 超ラク</option>
-        <option>2 - そこそこ</option>
-        <option>3 - まぁまぁ大変</option>
+      <label for="frequency">頻度 <span class="required">*</span></label>
+      <select id="frequency" name="frequency" required>
+        <option value="" disabled selected>実行頻度を選択してください</option>
+        <option value="毎日">毎日</option>
+        <option value="3日ごと">3日ごと</option>
+        <option value="週1回">週1回</option>
       </select>
 
-      <label>メモ</label>
-      <textarea placeholder="任意のメモ"></textarea>
+      <label for="memo">メモ</label>
+      <textarea id="memo" name="memo" placeholder="例：掃除機をかけて、テーブルを拭く"></textarea>
 
-      <button type="submit" class="btn-save">保存</button>
+      <button type="submit" class="save-btn">タスクを保存 ✨</button>
     </form>
+
+    <section class="register-note">
+      <p>💡 タスクは後から編集・削除できます<br>まずは気軽に登録してみましょう</p>
+    </section>
+
   </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <nav>
+      <a href="{{ url_for('index') }}"><span>🏠</span>ホーム</a>
+      <a href="{{ url_for('todo') }}"><span>✅</span>Todo</a>
+      <a href="{{ url_for('log') }}"><span>📅</span>ログ</a>
+      <a href="{{ url_for('edit') }}"><span>✏️</span>編集</a>
+      <a href="{{ url_for('register') }}" class="active"><span>➕</span>登録</a>
+    </nav>
+  </footer>
+
 </body>
 </html>

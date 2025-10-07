@@ -3,59 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zubo Raku - 編集</title>
+  <title>タスク編集 - Zubo Raku</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+
   <!-- ヘッダー -->
-  <header>
-    <h1>Zubo Raku</h1>
-    <p class="subtitle">できたらえらい、できなくてもえらい</p>
-    <nav class="menu">
-      <a href="{{ url_for('index') }}">Home</a>
-      <a href="{{ url_for('todo') }}">Todo</a>
-      <a href="{{ url_for('log') }}">Log</a>
-      <a href="{{ url_for('edit') }}" class="active">edit</a>
-      <a href="{{ url_for('register') }}">register</a>
-    </nav>
+  <header class="header">
+    <h1>タスク編集</h1>
+    <p class="subtitle">登録済みのタスクを管理</p>
   </header>
 
-  <!-- メイン -->
-  <main class="edit-content">
-    <h2>タスク編集</h2>
+  <main class="main-content">
 
-    <!-- フィルター -->
-    <div class="edit-filter">
-      <input type="text" placeholder="🔍 タスクを検索..." class="search-box">
+    <!-- 毎日 -->
+    <section class="category-section">
+      <div class="category-header">
+        <span class="dot green"></span>
+        <h2>毎日 <span class="count">(2/3)</span></h2>
+      </div>
 
-      <div class="filter-row">
-        <select>
-          <option>カテゴリ</option>
-          <option>掃除</option>
-          <option>洗濯</option>
-          <option>料理</option>
-        </select>
-        <select>
-          <option>頻度</option>
-          <option>毎日</option>
-          <option>3日おき</option>
-          <option>週一</option>
-        </select>
+      <div class="task-card">
+        <div class="task-main">
+          <div class="icon-area" style="background-color:#e6f9ec;">🧹</div>
+          <div class="task-info">
+            <h3>リビング掃除</h3>
+            <span class="badge green">毎日</span>
+            <p class="memo">掃除機をかけて、テーブルを拭く</p>
+          </div>
+          <div class="menu">⋯</div>
+        </div>
       </div>
-    </div>
 
-    <!-- 編集カード -->
-    <div class="edit-card">
-      <div class="task-info">
-        <h3>🛁 風呂 <span class="tag">掃除</span></h3>
-        <p>週一（日）</p>
-        <p>ラク度: 3</p>
+      <div class="task-card">
+        <div class="task-main">
+          <div class="icon-area" style="background-color:#e6f9ec;">🧹</div>
+          <div class="task-info">
+            <h3>キッチン整理</h3>
+            <span class="badge green">毎日</span>
+            <p class="memo">シンクの食器を片付ける</p>
+          </div>
+          <div class="menu">⋯</div>
+        </div>
       </div>
-      <div class="task-actions">
-        <button class="btn-edit">✏️</button>
-        <button class="btn-delete">🗑️</button>
+
+      <div class="task-card inactive">
+        <div class="task-main">
+          <div class="icon-area" style="background-color:#e6f9ec;">🧹</div>
+          <div class="task-info">
+            <h3>玄関清掃</h3>
+            <span class="badge green">毎日</span>
+            <p class="memo">靴を整えて床を拭く</p>
+          </div>
+          <span class="stopped">停止中</span>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- 3日ごと -->
+    <section class="category-section">
+      <div class="category-header">
+        <span class="dot pink"></span>
+        <h2>3日ごと <span class="count">(2/2)</span></h2>
+      </div>
+
+      <div class="task-card">
+        <div class="task-main">
+          <div class="icon-area" style="background-color:#fdecec;">👕</div>
+          <div class="task-info">
+            <h3>洗濯</h3>
+            <span class="badge pink">3日ごと</span>
+            <p class="memo">乾燥まで忘れずに</p>
+          </div>
+          <div class="menu">⋯</div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-main">
+          <div class="icon-area" style="background-color:#fdecec;">👕</div>
+          <div class="task-info">
+            <h3>アイロンがけ</h3>
+            <span class="badge pink">3日ごと</span>
+            <p class="memo">シャツとハンカチ中心</p>
+          </div>
+          <div class="menu">⋯</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 週1回 -->
+    <section class="category-section">
+      <div class="category-header">
+        <span class="dot yellow"></span>
+        <h2>週1回 <span class="count">(2/2)</span></h2>
+      </div>
+
+      <div class="task-card">
+        <div class="task-main">
+          <div class="icon-area" style="background-color:#fff8e6;">🍳</div>
+          <div class="task-info">
+            <h3>作り置き</h3>
+            <span class="badge yellow">週1回</span>
+            <p class="memo">週末に3〜4品まとめて調理</p>
+          </div>
+          <div class="menu">⋯</div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-main">
+          <div class="icon-area" style="background-color:#fff8e6;">🍳</div>
+          <div class="task-info">
+            <h3>冷蔵庫整理</h3>
+            <span class="badge yellow">週1回</span>
+            <p class="memo">使いかけ食材を確認</p>
+          </div>
+          <div class="menu">⋯</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 新しいタスク追加 -->
+    <section class="add-task">
+      <button class="add-btn">新しいタスクを追加 ✨</button>
+    </section>
+
   </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <nav>
+      <a href="{{ url_for('index') }}"><span>🏠</span>ホーム</a>
+      <a href="{{ url_for('todo') }}"><span>✅</span>Todo</a>
+      <a href="{{ url_for('log') }}"><span>📅</span>ログ</a>
+      <a href="{{ url_for('edit') }}" class="active"><span>✏️</span>編集</a>
+      <a href="{{ url_for('register') }}"><span>➕</span>登録</a>
+    </nav>
+  </footer>
+
 </body>
 </html>

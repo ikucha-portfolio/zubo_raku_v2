@@ -3,64 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zubo Raku - 履歴</title>
+  <title>ログ - Zubo Raku</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+
   <!-- ヘッダー -->
-  <header>
-    <h1>Zubo Raku</h1>
-    <p class="subtitle">できたらえらい、できなくてもえらい</p>
-    <nav class="menu">
-      <a href="{{ url_for('index') }}">Home</a>
-      <a href="{{ url_for('todo') }}">Todo</a>
-      <a href="{{ url_for('log') }}" class="active">Log</a>
-      <a href="{{ url_for('edit') }}">edit</a>
-      <a href="{{ url_for('register') }}">register</a>
-    </nav>
+  <header class="header">
+    <h1>ログ</h1>
+    <p class="subtitle">完了したタスクの記録</p>
   </header>
 
-  <!-- メイン内容 -->
-  <main class="log-content">
-    <h2>履歴</h2>
+  <!-- メイン -->
+  <main class="main-content">
 
-    <!-- フィルター -->
-    <div class="log-filter">
-      <div class="filter-group">
-        <label for="period">期間</label>
-        <select id="period">
-          <option>7日間</option>
-          <option>30日間</option>
-          <option>全期間</option>
-        </select>
+    <!-- 今週・今月カード -->
+    <section class="summary-cards">
+      <div class="summary-card">
+        <div class="icon">📈</div>
+        <h2>今週</h2>
+        <p class="number">12</p>
+        <p class="subtext">先週比 +4</p>
       </div>
-      <div class="filter-group">
-        <label for="category">カテゴリ</label>
-        <select id="category">
-          <option>すべて</option>
-          <option>掃除</option>
-          <option>洗濯</option>
-          <option>料理</option>
-        </select>
+      <div class="summary-card">
+        <div class="icon">📅</div>
+        <h2>今月</h2>
+        <p class="number">45</p>
+        <p class="subtext">7日連続 🔥</p>
       </div>
-    </div>
+    </section>
 
-    <!-- 件数 -->
-    <div class="log-stats">
-      <div class="stat">
-        <span class="count success">0</span>
-        <p>達成件数</p>
-      </div>
-      <div class="stat">
-        <span class="count skip">0</span>
-        <p>スキップ件数</p>
-      </div>
-    </div>
+    <!-- 見出し -->
+    <h3 class="section-title">最近の完了タスク</h3>
 
-    <!-- 履歴なしメッセージ -->
-    <div class="log-empty">
-      <p>履歴がありません</p>
-    </div>
+    <!-- 完了タスクカード -->
+    <section class="task-log">
+      <div class="log-card">
+        <div class="icon-area" style="background:#e6f9ec;">🧹</div>
+        <div class="log-info">
+          <h4>リビング掃除</h4>
+          <span class="badge green">毎日</span>
+        </div>
+        <span class="streak orange">3連続 🔥</span>
+        <p class="time">10/7 09:30</p>
+      </div>
+
+      <div class="log-card">
+        <div class="icon-area" style="background:#fdecec;">👕</div>
+        <div class="log-info">
+          <h4>洗濯</h4>
+          <span class="badge pink">3日ごと</span>
+        </div>
+        <span class="streak orange">3連続 🔥</span>
+        <p class="time">10/7 14:15</p>
+      </div>
+
+      <div class="log-card">
+        <div class="icon-area" style="background:#e6f9ec;">🧹</div>
+        <div class="log-info">
+          <h4>キッチン整理</h4>
+          <span class="badge green">毎日</span>
+        </div>
+        <span class="streak orange">5連続 🔥</span>
+        <p class="time">10/6 18:45</p>
+      </div>
+
+      <div class="log-card">
+        <div class="icon-area" style="background:#fff8e6;">🍳</div>
+        <div class="log-info">
+          <h4>作り置き</h4>
+          <span class="badge yellow">週1回</span>
+        </div>
+        <span class="streak orange">2連続 🔥</span>
+        <p class="time">10/6 11:20</p>
+      </div>
+
+      <div class="log-card">
+        <div class="icon-area" style="background:#fdecec;">👕</div>
+        <div class="log-info">
+          <h4>アイロンがけ</h4>
+          <span class="badge pink">3日ごと</span>
+        </div>
+        <p class="time">10/5 16:30</p>
+      </div>
+    </section>
+
+    <!-- メッセージ -->
+    <section class="log-message">
+      <p class="title">素晴らしい記録です！✨</p>
+      <p class="text">積み重ねが力になります</p>
+    </section>
+
   </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <nav>
+      <a href="{{ url_for('index') }}"><span>🏠</span>ホーム</a>
+      <a href="{{ url_for('todo') }}"><span>✅</span>Todo</a>
+      <a href="{{ url_for('log') }}" class="active"><span>📅</span>ログ</a>
+      <a href="{{ url_for('edit') }}"><span>✏️</span>編集</a>
+      <a href="{{ url_for('register') }}"><span>➕</span>登録</a>
+    </nav>
+  </footer>
+
 </body>
 </html>
