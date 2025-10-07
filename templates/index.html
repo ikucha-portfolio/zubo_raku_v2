@@ -11,67 +11,50 @@
   <!-- ヘッダー -->
   <header class="header">
     <h1>Zubo Raku</h1>
-    <p class="date">2025年10月8日 水曜日</p>
+    <p class="date">{{ current_date }}</p>
   </header>
 
   <!-- メイン -->
   <main class="main-content">
-    <!-- 毎日 -->
-    <section class="task-card">
-      <div class="task-header">
-        <div class="icon-area" style="background-color:#EAF6EA;">🧹</div>
-        <div>
-          <h2>毎日</h2>
-          <p class="status">1/3 完了</p>
-        </div>
-      </div>
-      <div class="task-list">
-        <button>リビング掃除</button>
-        <button>キッチン整理</button>
-        <button>玄関清掃</button>
-      </div>
-      <div class="progress-bar">
-        <div class="bar" style="width:33%;"></div>
-      </div>
-    </section>
 
-    <!-- 3日ごと -->
+    {% for freq, tasks in grouped_tasks.items() %}
     <section class="task-card">
       <div class="task-header">
-        <div class="icon-area" style="background-color:#FBECEE;">👕</div>
+        <div class="icon-area"
+          style="
+            {% if freq == '毎日' %}background-color:#EAF6EA;
+            {% elif freq == '3日おき' %}background-color:#FBECEE;
+            {% elif freq == '週一' %}background-color:#FFF8E7;
+            {% else %}background-color:#f1f5f9;
+            {% endif %}
+          ">
+          {% if freq == '毎日' %}
+            🧹
+          {% elif freq == '3日おき' %}
+            👕
+          {% elif freq == '週一' %}
+            🍳
+          {% else %}
+            🪣
+          {% endif %}
+        </div>
         <div>
-          <h2>3日ごと</h2>
-          <p class="status">2/3 完了</p>
+          <h2>{{ freq }}</h2>
+          <p class="status">0/{{ tasks|length }} 完了</p>
         </div>
       </div>
-      <div class="task-list">
-        <button>洗濯</button>
-        <button>アイロンがけ</button>
-        <button>衣類整理</button>
-      </div>
-      <div class="progress-bar">
-        <div class="bar" style="width:67%;"></div>
-      </div>
-    </section>
 
-    <!-- 週1回 -->
-    <section class="task-card">
-      <div class="task-header">
-        <div class="icon-area" style="background-color:#FFF8E7;">🍳</div>
-        <div>
-          <h2>週1回</h2>
-          <p class="status">0/3 完了</p>
-        </div>
-      </div>
       <div class="task-list">
-        <button>作り置き</button>
-        <button>冷蔵庫整理</button>
-        <button>買い物リスト</button>
+        {% for t in tasks %}
+          <button>{{ t.display_name or t.subtask }}</button>
+        {% endfor %}
       </div>
+
       <div class="progress-bar">
         <div class="bar" style="width:0%;"></div>
       </div>
     </section>
+    {% endfor %}
 
     <!-- 今日の進捗 -->
     <section class="progress-summary">
@@ -84,18 +67,18 @@
       </div>
       <p class="phrase">できたらえらい、できなくてもえらい ✨</p>
     </section>
+
   </main>
 
   <!-- フッター -->
   <footer class="footer">
-  <nav>
-    <a href="{{ url_for('index') }}" class="active"><span>🏠</span>ホーム</a>
-    <a href="{{ url_for('todo') }}"><span>✅</span>Todo</a>
-    <a href="{{ url_for('log') }}"><span>📅</span>ログ</a>
-    <a href="{{ url_for('edit') }}"><span>✏️</span>編集</a>
-    <a href="{{ url_for('register') }}"><span>➕</span>登録</a>
-  </nav>
-</footer>
-
+    <nav>
+      <a href="{{ url_for('index') }}" class="active"><span>🏠</span>ホーム</a>
+      <a href="{{ url_for('todo') }}"><span>✅</span>Todo</a>
+      <a href="{{ url_for('log') }}"><span>📅</span>ログ</a>
+      <a href="{{ url_for('edit') }}"><span>✏️</span>編集</a>
+      <a href="{{ url_for('register') }}"><span>➕</span>登録</a>
+    </nav>
+  </footer>
 </body>
 </html>

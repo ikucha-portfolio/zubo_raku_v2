@@ -17,7 +17,8 @@
   <!-- メイン -->
   <main class="main-content">
 
-    <form action="#" method="post" class="register-form">
+    <form action="{{ url_for('add_task') }}" method="post" class="register-form">
+
 
       <label for="task_name">タスク名 <span class="required">*</span></label>
       <input type="text" id="task_name" name="task_name" placeholder="例：リビング掃除" required>
@@ -34,8 +35,8 @@
       <select id="frequency" name="frequency" required>
         <option value="" disabled selected>実行頻度を選択してください</option>
         <option value="毎日">毎日</option>
-        <option value="3日ごと">3日ごと</option>
-        <option value="週1回">週1回</option>
+        <option value="3日おき">3日おき</option>
+        <option value="週一">週一</option>
       </select>
 
       <label for="memo">メモ</label>
