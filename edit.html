@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zubo Raku - 編集</title>
+  <!-- Flask構文を削除し、直接パス指定 -->
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <h1>Zubo Raku</h1>
+    <p class="subtitle">できたらえらい、できなくてもえらい</p>
+    <nav class="menu">
+      <!-- Flaskのurl_for構文をすべてHTMLファイル名に変更 -->
+      <a href="index.html">Home</a>
+      <a href="todo.html">Todo</a>
+      <a href="log.html">Log</a>
+      <a href="edit.html" class="active">edit</a>
+      <a href="register.html">register</a>
+    </nav>
+  </header>
+
+  <!-- メイン -->
+  <main class="edit-content">
+    <h2>タスク編集</h2>
+
+    <!-- フィルター -->
+    <div class="edit-filter">
+      <input type="text" placeholder="🔍 タスクを検索..." class="search-box">
+
+      <div class="filter-row">
+        <select>
+          <option>カテゴリ</option>
+          <option>掃除</option>
+          <option>洗濯</option>
+          <option>料理</option>
+        </select>
+        <select>
+          <option>頻度</option>
+          <option>毎日</option>
+          <option>3日おき</option>
+          <option>週一</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 編集カード -->
+    <div class="edit-card">
+      <div class="task-info">
+        <h3>🛁 風呂 <span class="tag">掃除</span></h3>
+        <p>週一（日）</p>
+        <p>ラク度: 3</p>
+      </div>
+      <div class="task-actions">
+        <button class="btn-edit">✏️</button>
+        <button class="btn-delete">🗑️</button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zubo Raku - 今日のやること</title>
+  <!-- Flask構文を削除して直接CSSを指定 -->
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Zubo Raku</h1>
+    <p class="subtitle">できたらえらい、できなくてもえらい</p>
+    <nav class="menu">
+      <!-- Flaskのurl_for構文をHTMLファイル名に変更 -->
+      <a href="index.html">Home</a>
+      <a href="todo.html" class="active">Todo</a>
+      <a href="log.html">Log</a>
+      <a href="edit.html">Edit</a>
+      <a href="register.html">Register</a>
+    </nav>
+  </header>
+
+  <main class="todo-main">
+    <h2>今日のやること</h2>
+    <p class="date-text">2025/10/07</p>
+
+    <!-- 掃除 -->
+    <section class="task-category">
+      <h3 class="category-title">🧹 掃除</h3>
+      <div class="task-list">
+        <div class="task-item" onclick="toggleEdit(this)">
+          <label class="task-label">
+            <input type="checkbox" id="clean-1">
+            <span class="task-name">玄関</span>
+          </label>
+          <div class="task-edit">
+            <label>頻度:
+              <select>
+                <option>毎日</option>
+                <option>3日おき</option>
+                <option>週一</option>
+              </select>
+            </label>
+            <label>メモ:
+              <input type="text" placeholder="メモを入力">
+            </label>
+            <div class="edit-buttons">
+              <button class="save">保存</button>
+              <button class="delete">削除</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-item" onclick="toggleEdit(this)">
+          <label class="task-label">
+            <input type="checkbox" id="clean-2">
+            <span class="task-name">トイレ</span>
+          </label>
+          <div class="task-edit">
+            <label>頻度:
+              <select>
+                <option>毎日</option>
+                <option>3日おき</option>
+                <option>週一</option>
+              </select>
+            </label>
+            <label>メモ:
+              <input type="text" placeholder="メモを入力">
+            </label>
+            <div class="edit-buttons">
+              <button class="save">保存</button>
+              <button class="delete">削除</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 料理 -->
+    <section class="task-category">
+      <h3 class="category-title">🍳 料理</h3>
+      <div class="task-list">
+        <div class="task-item"><label><input type="checkbox"> 朝ごはん</label></div>
+        <div class="task-item"><label><input type="checkbox"> 昼ごはん</label></div>
+        <div class="task-item"><label><input type="checkbox"> 夜ごはん</label></div>
+      </div>
+    </section>
+
+    <!-- 洗濯 -->
+    <section class="task-category">
+      <h3 class="category-title">👕 洗濯</h3>
+      <div class="task-list">
+        <div class="task-item"><label><input type="checkbox"> 洗う</label></div>
+        <div class="task-item"><label><input type="checkbox"> 干す</label></div>
+        <div class="task-item"><label><input type="checkbox"> 畳む</label></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- スクリプト -->
+  <script>
+  function toggleEdit(taskElement) {
+    const editBlock = taskElement.querySelector('.task-edit');
+    editBlock.classList.toggle('active');
+  }
+  </script>
+</body>
+</html>

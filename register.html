@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zubo Raku - 登録</title>
+  <!-- Flask構文を削除し、直接CSSパス指定 -->
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <h1>Zubo Raku</h1>
+    <p class="subtitle">できたらえらい、できなくてもえらい</p>
+    <nav class="menu">
+      <!-- Flask構文をHTMLファイル名に書き換え -->
+      <a href="index.html">Home</a>
+      <a href="todo.html">Todo</a>
+      <a href="log.html">Log</a>
+      <a href="edit.html">edit</a>
+      <a href="register.html" class="active">register</a>
+    </nav>
+  </header>
+
+  <main class="register-content">
+    <h2>新規タスク</h2>
+
+    <form class="register-form">
+      <label>タスク名 *</label>
+      <input type="text" placeholder="例：風呂掃除">
+
+      <label>カテゴリ</label>
+      <select>
+        <option>掃除</option>
+        <option>洗濯</option>
+        <option>料理</option>
+      </select>
+
+      <label>頻度</label>
+      <div class="radio-group">
+        <label><input type="radio" name="frequency" checked> 毎日</label>
+        <label><input type="radio" name="frequency"> 3日おき</label>
+        <label><input type="radio" name="frequency"> 週一</label>
+      </div>
+
+      <label>ラク度</label>
+      <select>
+        <option>1 - 超ラク</option>
+        <option>2 - そこそこ</option>
+        <option>3 - まぁまぁ大変</option>
+      </select>
+
+      <label>メモ</label>
+      <textarea placeholder="任意のメモ"></textarea>
+
+      <button type="submit" class="btn-save">保存</button>
+    </form>
+  </main>
+</body>
+</html>
