@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zubo Raku</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- Flask構文を削除して、直接パス指定 -->
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
 
@@ -13,12 +14,13 @@
     <h1>Zubo Raku</h1>
     <p class="subtitle">できたらえらい、できなくてもえらい</p>
     <nav class="menu">
-  <a href="{{ url_for('index') }}" class="active">Home</a>
-  <a href="{{ url_for('todo') }}">Todo</a>
-  <a href="{{ url_for('log') }}">Log</a>
-  <a href="{{ url_for('edit') }}">edit</a>
-  <a href="{{ url_for('register') }}">register</a>
-</nav>
+      <!-- Flaskのurl_forをHTMLのファイル名に書き換え -->
+      <a href="index.html" class="active">Home</a>
+      <a href="todo.html">Todo</a>
+      <a href="log.html">Log</a>
+      <a href="edit.html">edit</a>
+      <a href="register.html">register</a>
+    </nav>
   </header>
 
   <!-- 日付 -->
@@ -62,27 +64,27 @@
     </section>
 
     <!-- 週一 -->
-<section class="task-card">
-  <h2>週一<span class="dot active"></span></h2>
-  <div class="category">
-    <h3>🧽 掃除（週一エリア）：</h3>
-    <div class="tasks">
-      <button>□ リビング</button>
-      <button>□ 寝室</button>
-      <button>□ キッチン</button>
-      <button>□ 風呂</button>
-    </div>
-  </div>
-  <div class="category">
-    <h3>👕 洗濯：</h3>
-    <div class="tasks">
-      <button>□ 洗う</button>
-      <button>□ 干す</button>
-      <button>□ 畳む</button>
-    </div>
-  </div>
-</section>
-
+    <section class="task-card">
+      <h2>週一<span class="dot active"></span></h2>
+      <div class="category">
+        <h3>🧽 掃除（週一エリア）：</h3>
+        <div class="tasks">
+          <button>□ リビング</button>
+          <button>□ 寝室</button>
+          <button>□ キッチン</button>
+          <button>□ 風呂</button>
+        </div>
+      </div>
+      <div class="category">
+        <h3>👕 洗濯：</h3>
+        <div class="tasks">
+          <button>□ 洗う</button>
+          <button>□ 干す</button>
+          <button>□ 畳む</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- フッター -->
   <footer>
