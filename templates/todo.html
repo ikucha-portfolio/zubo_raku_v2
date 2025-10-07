@@ -29,16 +29,22 @@
     <p class="message">今日もズボラにキラリ✨</p>
 
     <section class="todo-task">
+  {% if tasks %}
+    {% for name, freq, cat in tasks %}
       <div class="task-item">
-        <input type="checkbox" id="task1">
-        <label for="task1">🧹 風呂掃除</label>
+        <label>🧹 {{ cat }}：{{ name }}（{{ freq }}）</label>
         <div class="task-buttons">
           <button class="btn done">完了</button>
           <button class="btn next">明日へ</button>
           <button class="btn skip">スキップ</button>
         </div>
       </div>
-    </section>
+    {% endfor %}
+  {% else %}
+    <p>今日はタスクがありません🎉</p>
+  {% endif %}
+</section>
+
 
     <div class="today-message">
       <p class="title">今日のひとこと</p>

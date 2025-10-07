@@ -14,11 +14,30 @@ def index():
     conn.close()
     return render_template('index.html', categories=categories)
 
-# 今日のやることページ
 @app.route('/todo')
 def todo():
-    today = date.today().strftime("%Y/%m/%d")
-    return render_template('todo.html', today=today)
+    today = date.today()
+    weekday = today.weekday()  # 0=月曜, 6=日曜
+    conn = sqlite3.connect('/Users/ami/Desktop/housework.db')
+    cur = conn.cursor()
+
+    # 今日のタスクを抽出するSQL
+    query = """
+    SELECT s.name, s.frequency, c.name
+    FROM subtasks s
+    JOIN categories c ON s.category_id = c.id
+    WHERE 
+      (s.frequency = '毎日')
+      OR (s.frequency = '3日おき' AND (julianday(?) - julianday('2025-10-07')) % 3 = 0)
+      OR (s.frequency = '週一' AND ? = 5)
+    ORDER BY c.name;
+    """
+    cur.execute(query, (today, weekday))
+    tasks = cur.fetchall()
+    conn.close()
+
+    return render_template('todo.html', today=today, tasks=tasks)
+
 
 @app.route('/log')
 def log():
