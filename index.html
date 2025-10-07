@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zubo Raku</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header>
+    <h1>Zubo Raku</h1>
+    <p class="subtitle">できたらえらい、できなくてもえらい</p>
+    <nav class="menu">
+  <a href="{{ url_for('index') }}" class="active">Home</a>
+  <a href="{{ url_for('todo') }}">Todo</a>
+  <a href="{{ url_for('log') }}">Log</a>
+  <a href="{{ url_for('edit') }}">edit</a>
+  <a href="{{ url_for('register') }}">register</a>
+</nav>
+  </header>
+
+  <!-- 日付 -->
+  <div class="date-bar">
+    <p>2025/10/06</p>
+  </div>
+
+  <!-- タスク一覧 -->
+  <main class="content">
+    <!-- 毎日 -->
+    <section class="task-card">
+      <h2>毎日<span class="dot active"></span></h2>
+      <div class="category">
+        <h3>🧹 掃除：</h3>
+        <div class="tasks">
+          <button>□ 玄関</button>
+          <button>□ トイレ</button>
+        </div>
+      </div>
+      <div class="category">
+        <h3>🍳 料理：</h3>
+        <div class="tasks">
+          <button>□ 朝</button>
+          <button>□ 昼</button>
+          <button>□ 夕</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3日おき -->
+    <section class="task-card">
+      <h2>3日おき<span class="dot active"></span></h2>
+      <div class="category">
+        <h3>👕 洗濯：</h3>
+        <div class="tasks">
+          <button>□ 洗う</button>
+          <button>□ 干す</button>
+          <button>□ 畳む</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 週一 -->
+<section class="task-card">
+  <h2>週一<span class="dot active"></span></h2>
+  <div class="category">
+    <h3>🧽 掃除（週一エリア）：</h3>
+    <div class="tasks">
+      <button>□ リビング</button>
+      <button>□ 寝室</button>
+      <button>□ キッチン</button>
+      <button>□ 風呂</button>
+    </div>
+  </div>
+  <div class="category">
+    <h3>👕 洗濯：</h3>
+    <div class="tasks">
+      <button>□ 洗う</button>
+      <button>□ 干す</button>
+      <button>□ 畳む</button>
+    </div>
+  </div>
+</section>
+
+
+  <!-- フッター -->
+  <footer>
+    <div class="progress-info">
+      <span>今日の達成度 45%</span> |
+      <span>いい女度 80%</span> |
+      <span>運気度 ★★★★☆</span>
+    </div>
+    <div class="progress-bar">
+      <div class="bar" style="width: 45%;"></div>
+    </div>
+  </footer>
+
+</body>
+</html>

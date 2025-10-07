@@ -11,47 +11,68 @@
     <h1>Zubo Raku</h1>
     <p class="subtitle">できたらえらい、できなくてもえらい</p>
     <nav class="menu">
-  <a href="{{ url_for('index') }}">Home</a>
-  <a href="{{ url_for('todo') }}" class="active">Todo</a>
-  <a href="{{ url_for('log') }}">Log</a>
-  <a href="{{ url_for('edit') }}">edit</a>
-  <a href="{{ url_for('register') }}">register</a>
-</nav>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('todo') }}" class="active">Todo</a>
+      <a href="{{ url_for('log') }}">Log</a>
+      <a href="{{ url_for('edit') }}">Edit</a>
+      <a href="{{ url_for('register') }}">Register</a>
+    </nav>
   </header>
 
-  <main>
-    <div class="todo-header">
-      <h2>今日のやること</h2>
-      <a href="{{ url_for('index') }}" class="back-link">← Homeへ戻る</a>
+  <main class="todo-main">
+  <h2>今日のやること</h2>
+  <p class="date-text">{{ today }}</p>
+
+  {% for category, tasks in grouped_tasks.items() %}
+  <section class="task-category">
+    <h3 class="category-title">🧹 {{ category }}</h3>
+    <div class="task-list">
+      {% for t in tasks %}
+      <div class="task-item" onclick="toggleEdit(this)">
+  <label class="task-label">
+    <input type="checkbox" id="{{ category }}-{{ loop.index }}">
+    <span class="task-name">{{ t.subtask }}</span>
+  </label>
+
+  <!-- 編集エリア（最初は非表示） -->
+  <div class="task-edit">
+    <label>頻度:
+      <select>
+        <option>毎日</option>
+        <option>3日おき</option>
+        <option>週一</option>
+      </select>
+    </label>
+    <label>メモ:
+      <input type="text" placeholder="メモを入力">
+    </label>
+    <div class="edit-buttons">
+      <button class="save">保存</button>
+      <button class="delete">削除</button>
     </div>
-
-    <p class="date-text">{{ today }}</p>
-    <p class="message">今日もズボラにキラリ✨</p>
-
-    <section class="todo-task">
-  {% if tasks %}
-    {% for name, freq, cat in tasks %}
-      <div class="task-item">
-        <label>🧹 {{ cat }}：{{ name }}（{{ freq }}）</label>
-        <div class="task-buttons">
-          <button class="btn done">完了</button>
-          <button class="btn next">明日へ</button>
-          <button class="btn skip">スキップ</button>
-        </div>
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>今日はタスクがありません🎉</p>
-  {% endif %}
-</section>
-
-
-    <div class="today-message">
-      <p class="title">今日のひとこと</p>
-      <p class="text">今日の自分にお疲れさま✨</p>
+  </div>
+</div>
+      {% endfor %}
     </div>
+  </section>
+  {% endfor %}
+</main>
 
-    <button class="btn-clear">完了を消す</button>
-  </main>
+
+  <!-- ▼ プルダウン動作用スクリプト -->
+  <script>
+  function toggleMenu(btn) {
+    const menu = btn.nextElementSibling;
+    menu.classList.toggle("show");
+  }
+  </script>
+  <!-- ▲ プルダウン動作用スクリプト -->
+   <script>
+function toggleEdit(taskElement) {
+  const editBlock = taskElement.querySelector('.task-edit');
+  editBlock.classList.toggle('active');
+}
+</script>
+
 </body>
 </html>
