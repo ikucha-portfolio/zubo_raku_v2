@@ -766,4 +766,135 @@ footer .progress-info {
   margin-left: 5px;
 }
 
+.task-actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.btn-done {
+  background-color: #00c851;
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+}
+.btn-defer, .btn-skip {
+  background-color: #f1f1f1;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+}
 
+/* =======================================
+   Zubo Raku v2  Todoページデザイン
+======================================= */
+.todo-main {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.category-card {
+  background-color: #fff9f9;
+  border-radius: 1.5rem;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.category-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.task-card {
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.task-card:hover {
+  background-color: #f9fafb;
+  transform: scale(1.01);
+}
+
+.task-name {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* ====== モーダル ====== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 1.2rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  width: 85%;
+  max-width: 320px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  animation: pop 0.2s ease-out;
+}
+
+@keyframes pop {
+  from { transform: scale(0.95); opacity: 0.7; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.modal-buttons button {
+  border: none;
+  border-radius: 0.8rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-done {
+  background-color: #bbf7d0;
+}
+
+.btn-defer {
+  background-color: #dbeafe;
+}
+
+.btn-skip {
+  background-color: #fce7f3;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #777;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  cursor: pointer;
+}

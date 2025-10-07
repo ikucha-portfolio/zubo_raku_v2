@@ -6,6 +6,7 @@
   <title>Zubo Raku - 今日のやること</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
   <header>
     <h1>Zubo Raku</h1>
@@ -20,59 +21,56 @@
   </header>
 
   <main class="todo-main">
-  <h2>今日のやること</h2>
-  <p class="date-text">{{ today }}</p>
+    <h2>今日のやること</h2>
+    <p class="date-text">{{ today }}</p>
 
-  {% for category, tasks in grouped_tasks.items() %}
-  <section class="task-category">
-    <h3 class="category-title">🧹 {{ category }}</h3>
-    <div class="task-list">
-      {% for t in tasks %}
-      <div class="task-item" onclick="toggleEdit(this)">
-  <label class="task-label">
-    <input type="checkbox" id="{{ category }}-{{ loop.index }}">
-    <span class="task-name">{{ t.subtask }}</span>
-  </label>
+    {% for category, tasks in grouped_tasks.items() %}
+    <section class="category-card">
+      <h3>🧹 {{ category }}</h3>
+      <div class="task-list">
+        {% for t in tasks %}
+        <div class="task-card" onclick="openModal('{{ t.subtask }}')">
+          <span class="task-name">{{ t.subtask }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  </main>
 
-  <!-- 編集エリア（最初は非表示） -->
-  <div class="task-edit">
-    <label>頻度:
-      <select>
-        <option>毎日</option>
-        <option>3日おき</option>
-        <option>週一</option>
-      </select>
-    </label>
-    <label>メモ:
-      <input type="text" placeholder="メモを入力">
-    </label>
-    <div class="edit-buttons">
-      <button class="save">保存</button>
-      <button class="delete">削除</button>
+  <!-- モーダル -->
+  <div id="taskModal" class="modal">
+    <div class="modal-content">
+      <h2 id="modalTaskName"></h2>
+      <p>どうしますか？</p>
+      <div class="modal-buttons">
+        <button class="btn-done">✅ 完了</button>
+        <button class="btn-defer">➡ あすへ</button>
+        <button class="btn-skip">✖ スキップ</button>
+      </div>
+      <button class="modal-close" onclick="closeModal()">キャンセル</button>
     </div>
   </div>
-</div>
-      {% endfor %}
-    </div>
-  </section>
-  {% endfor %}
-</main>
 
-
-  <!-- ▼ プルダウン動作用スクリプト -->
   <script>
-  function toggleMenu(btn) {
-    const menu = btn.nextElementSibling;
-    menu.classList.toggle("show");
-  }
-  </script>
-  <!-- ▲ プルダウン動作用スクリプト -->
-   <script>
-function toggleEdit(taskElement) {
-  const editBlock = taskElement.querySelector('.task-edit');
-  editBlock.classList.toggle('active');
-}
-</script>
+    const modal = document.getElementById('taskModal');
+    const modalTaskName = document.getElementById('modalTaskName');
 
+    function openModal(taskName) {
+      modalTaskName.textContent = taskName;
+      modal.classList.add('show');
+    }
+
+    function closeModal() {
+      modal.classList.remove('show');
+    }
+
+    // 背景クリックでも閉じる
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+  </script>
 </body>
 </html>
