@@ -21,23 +21,22 @@
     <section class="task-card">
       <div class="task-header">
         <div class="icon-area"
-          style="
-            {% if freq == '毎日' %}background-color:#EAF6EA;
-            {% elif freq == '3日おき' %}background-color:#FBECEE;
-            {% elif freq == '週一' %}background-color:#FFF8E7;
-            {% else %}background-color:#f1f5f9;
-            {% endif %}
-          ">
-          {% if freq == '毎日' %}
-            🧹
-          {% elif freq == '3日おき' %}
-            👕
-          {% elif freq == '週一' %}
-            🍳
-          {% else %}
-            🪣
-          {% endif %}
-        </div>
+  style="{% if freq == '毎日' %}background-color:#FFF8E7;
+          {% elif freq == '3日おき' %}background-color:#FBECEE;
+          {% elif freq == '週一' %}background-color:#EAF6EA;
+          {% else %}background-color:#f1f5f9;{% endif %}">
+  {% if freq == '毎日' %}
+    🍳
+  {% elif freq == '3日おき' %}
+    👕
+  {% elif freq == '週一' %}
+    🧹
+  {% else %}
+    🪣
+  {% endif %}
+</div>
+
+
         <div>
           <h2>{{ freq }}</h2>
           <p class="status">0/{{ tasks|length }} 完了</p>
