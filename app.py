@@ -87,7 +87,9 @@ def todo():
         c.name AS category,
         s.name AS subtask,
         s.frequency,
-        p.is_completed
+        p.is_completed,
+        p.planned_date,
+        p.next_date
     FROM subtasks s
     JOIN categories c ON s.category_id = c.id
     LEFT JOIN progress p ON s.id = p.subtask_id
@@ -111,8 +113,21 @@ def todo():
             "id": row["subtask_id"],
             "category": row["category"],
             "subtask": row["subtask"],
-            "frequency": row["frequency"]
+            "frequency": row["frequency"],
+            "is_completed": row["is_completed"],
         }
+
+        # 🌈 状態を追加
+        if row["is_completed"] == 1:
+            task_data["status"] = "done"
+        elif row["planned_date"] and str(row["planned_date"]) > str(today):
+            task_data["status"] = "defer"
+        elif row["next_date"] and str(row["next_date"]) > str(today):
+            task_data["status"] = "skip"
+        else:
+            task_data["status"] = "normal"
+
+        # 🗂 分類
         if row["is_completed"] == 1:
             completed_tasks.append(task_data)
         else:
@@ -124,7 +139,6 @@ def todo():
         incomplete_tasks=incomplete_tasks,
         completed_tasks=completed_tasks
     )
-
 
 
 
