@@ -348,6 +348,40 @@ button.skip:hover,
   font-weight: 600;
   margin-top: 0.5rem;
 }
+/* =========================================
+   🌿 Todoカード：共通デザイン + 状態色
+   ========================================= */
+.task-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  margin-bottom: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* ✔できた：緑 */
+.task-card.done {
+  background-color: #d7f5d0;
+  border: 1px solid #b0e89f;
+}
+
+/* →あすへ：薄グレー */
+.task-card.defer {
+  background-color: #f3f3f3;
+  opacity: 0.9;
+}
+
+/* ✕スキップ：さらに淡いグレー */
+.task-card.skip {
+  background-color: #ebebeb;
+  opacity: 0.7;
+}
+
+/* ホバー時：柔らかく */
+.task-card:hover {
+  transform: translateY(-2px);
+}
 
 /* =========================================
    📱 Responsive
