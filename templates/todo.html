@@ -11,82 +11,43 @@
   <!-- ヘッダー -->
   <header class="header">
     <h1>今日のTodo</h1>
-    <p class="date">2025年10月8日水曜日</p>
+    <p class="date">{{ today }}</p>
   </header>
 
   <!-- メインコンテンツ -->
   <main class="main-content">
+{% for category, tasks in grouped_tasks.items() %}
+    {% for task in tasks %}
+        {% if task.is_completed %}
+            <section class="task-card completed">
+                <div class="task-header">
+                    <div class="icon-area">🧹</div>
+                    <div>
+                        <h2>{{ category }}：{{ task.subtask }}</h2>
+                        <p>{{ task.frequency }}</p>
+                    </div>
+                </div>
+                <p class="completed-text">✔ 完了しました！</p>
+            </section>
+        {% else %}
+            <section class="task-card">
+                <div class="task-header">
+                    <div class="icon-area">🧹</div>
+                    <div>
+                        <h2>{{ category }}：{{ task.subtask }}</h2>
+                        <p>{{ task.frequency }}</p>
+                    </div>
+                </div>
+                <form action="{{ url_for('update_status', subtask_id=task.id) }}" method="POST" class="task-buttons">
+                    <button type="submit" name="status" value="done" class="btn done">✔ できた</button>
+                    <button type="submit" name="status" value="defer" class="btn tomorrow">→ あすへ</button>
+                    <button type="submit" name="status" value="skip" class="btn skip">✕ スキップ</button>
+                </form>
+            </section>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
 
-    <!-- タスクカード：未完了 -->
-    <section class="task-card">
-      <div class="task-header">
-        <div class="icon-area" style="background-color:#e6f9ec;">🧹</div>
-        <div>
-          <h2>リビング掃除</h2>
-          <span class="badge">毎日</span>
-        </div>
-      </div>
-      <div class="task-buttons">
-        <button class="btn done">✔ できた</button>
-        <button class="btn defer">→ あすへ</button>
-        <button class="btn skip">✕ スキップ</button>
-      </div>
-    </section>
-
-    <section class="task-card">
-      <div class="task-header">
-        <div class="icon-area" style="background-color:#e6f9ec;">🧹</div>
-        <div>
-          <h2>キッチン整理</h2>
-          <span class="badge">毎日</span>
-        </div>
-      </div>
-      <div class="task-buttons">
-  <button class="done">✔ できた</button>
-  <button class="tomorrow">→ あすへ</button>
-  <button class="skip">✕ スキップ</button>
-</div>
-
-    </section>
-
-    <!-- タスクカード：完了済み -->
-    <section class="task-card completed">
-      <div class="task-header">
-        <div class="icon-area" style="background-color:#fdecec;">👕</div>
-        <div>
-          <h2 class="done-text">洗濯</h2>
-          <span class="badge light">3日ごと</span>
-        </div>
-      </div>
-      <p class="completed-text">✔ 完了しました！</p>
-    </section>
-
-    <section class="task-card completed">
-      <div class="task-header">
-        <div class="icon-area" style="background-color:#fdecec;">👕</div>
-        <div>
-          <h2 class="done-text">アイロンがけ</h2>
-          <span class="badge light">3日ごと</span>
-        </div>
-      </div>
-      <p class="completed-text">✔ 完了しました！</p>
-    </section>
-
-    <!-- タスクカード：未完了（週1） -->
-    <section class="task-card">
-      <div class="task-header">
-        <div class="icon-area" style="background-color:#fff8e6;">🍳</div>
-        <div>
-          <h2>作り置き</h2>
-          <span class="badge yellow">週1回</span>
-        </div>
-      </div>
-      <div class="task-buttons">
-        <button class="btn done">✔ できた</button>
-        <button class="btn defer">→ あすへ</button>
-        <button class="btn skip">✕ スキップ</button>
-      </div>
-    </section>
 
     <!-- 一言メッセージ -->
     <section class="today-message">

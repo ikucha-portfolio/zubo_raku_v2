@@ -336,6 +336,19 @@ button.skip:hover,
   background: #86efac;
 }
 
+/* ✅ 完了済みカード用 */
+.task-card.completed {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  opacity: 0.9;
+}
+
+.completed-text {
+  color: #15803d;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
 /* =========================================
    📱 Responsive
    ========================================= */
