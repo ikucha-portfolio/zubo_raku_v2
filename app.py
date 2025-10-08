@@ -214,9 +214,10 @@ def update_status(subtask_id):
     elif action == 'defer':  # → あすへ
         cur.execute("""
             UPDATE progress
-            SET planned_date = DATE(planned_date, '+1 day')
+            SET planned_date = DATE(?, '+1 day')
             WHERE subtask_id = ?
-        """, (subtask_id,))
+        """, (today, subtask_id))
+
 
     elif action == 'skip':  # ✕ スキップ
         cur.execute("""
