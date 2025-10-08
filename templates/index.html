@@ -70,15 +70,16 @@
 
     <!-- 今日の進捗 -->
     <section class="progress-summary">
-      <div class="summary-header">
-        <h3>いい女度</h3>
-        <p>33%</p>
-      </div>
-      <div class="progress-bar">
-        <div class="bar" style="width:33%;"></div>
-      </div>
-      <p class="phrase">できたらえらい、できなくてもえらい ✨</p>
-    </section>
+  <div class="summary-header">
+    <h3>いい女度</h3>
+    <p>{{ percent }}%</p>
+  </div>
+  <div class="progress-bar">
+  <div class="bar" style="width:{{ percent }}%;"></div>
+</div>
+
+  <p class="phrase">できたらえらい、できなくてもえらい ✨</p>
+</section>
 
   </main>
 

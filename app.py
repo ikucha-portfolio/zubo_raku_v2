@@ -27,7 +27,17 @@ def index():
           c.id;
     """)
     rows = cur.fetchall()
+
+    # ✅ 進捗率計算（is_completed 使用／subtask_idベース）
+    cur.execute("SELECT COUNT(*) FROM progress;")
+    total = cur.fetchone()[0]
+
+    cur.execute("SELECT COUNT(*) FROM progress WHERE is_completed = 1;")
+    done = cur.fetchone()[0]
+
     conn.close()
+
+    percent = int((done / total) * 100) if total > 0 else 0
 
     # 🗂 頻度ごとにまとめつつ、自然な表示名を作成
     from collections import defaultdict
@@ -51,11 +61,13 @@ def index():
             "category": category
         })
 
+    # ✅ HTMLへ渡す
     return render_template(
-    'index.html',
-    grouped_tasks=grouped_tasks,
-    current_date=date.today().strftime("%Y年%m月%d日 %A")
-)
+        'index.html',
+        grouped_tasks=grouped_tasks,
+        percent=percent,
+        current_date=date.today().strftime("%Y年%m月%d日 %A")
+    )
 
 
 
