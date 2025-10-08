@@ -251,6 +251,90 @@ body {
   gap: 0.5rem;
   margin-bottom: 0.6rem; /* カテゴリ間の余白 */
 }
+/* =========================================
+   🌸 Button（共通・Figma準拠）
+   ========================================= */
+button,
+input[type="submit"],
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.9rem;
+  background-color: #f1f5f9;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+button:hover,
+input[type="submit"]:hover,
+.btn:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+button:active,
+input[type="submit"]:active,
+.btn:active {
+  background-color: #dce1e7;
+  transform: translateY(1px);
+}
+
+/* --- Variation --- */
+button.done,
+.btn.done,
+input.done {
+  background-color: #dcfce7;
+  color: #14532d;
+  font-weight: 600;
+}
+button.done:hover,
+.btn.done:hover {
+  background-color: #bbf7d0;
+}
+
+button.tomorrow,
+.btn.tomorrow {
+  background-color: #e0f2fe;
+  color: #1e3a8a;
+}
+button.tomorrow:hover,
+.btn.tomorrow:hover {
+  background-color: #bfdbfe;
+}
+
+button.skip,
+.btn.skip {
+  background-color: #fdecef;
+  color: #9d174d;
+}
+button.skip:hover,
+.btn.skip:hover {
+  background-color: #fbcfe8;
+}
+
+/* --- Register Page Button --- */
+.save-btn {
+  background: #a7f3d0;
+  color: #064e3b;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.9rem 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.save-btn:hover {
+  background: #86efac;
+}
 
 /* =========================================
    📱 Responsive
