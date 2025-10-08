@@ -102,19 +102,28 @@ def todo():
     rows = cur.fetchall()
     conn.close()
 
-    # 🗂 カテゴリごとにまとめる
-    from collections import defaultdict
-    grouped_tasks = defaultdict(list)
+    # 🧩 完了・未完了に分ける
+    incomplete_tasks = []
+    completed_tasks = []
 
     for row in rows:
-        grouped_tasks[row["category"]].append({
+        task_data = {
             "id": row["subtask_id"],
+            "category": row["category"],
             "subtask": row["subtask"],
-            "frequency": row["frequency"],
-            "is_completed": row["is_completed"]
-        })
+            "frequency": row["frequency"]
+        }
+        if row["is_completed"] == 1:
+            completed_tasks.append(task_data)
+        else:
+            incomplete_tasks.append(task_data)
 
-    return render_template('todo.html', today=today, grouped_tasks=grouped_tasks)
+    return render_template(
+        'todo.html',
+        today=today,
+        incomplete_tasks=incomplete_tasks,
+        completed_tasks=completed_tasks
+    )
 
 
 

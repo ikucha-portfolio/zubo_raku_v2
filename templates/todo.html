@@ -16,37 +16,39 @@
 
   <!-- メインコンテンツ -->
   <main class="main-content">
-{% for category, tasks in grouped_tasks.items() %}
-    {% for task in tasks %}
-        {% if task.is_completed %}
-            <section class="task-card completed">
-                <div class="task-header">
-                    <div class="icon-area">🧹</div>
-                    <div>
-                        <h2>{{ category }}：{{ task.subtask }}</h2>
-                        <p>{{ task.frequency }}</p>
-                    </div>
-                </div>
-                <p class="completed-text">✔ 完了しました！</p>
-            </section>
-        {% else %}
-            <section class="task-card">
-                <div class="task-header">
-                    <div class="icon-area">🧹</div>
-                    <div>
-                        <h2>{{ category }}：{{ task.subtask }}</h2>
-                        <p>{{ task.frequency }}</p>
-                    </div>
-                </div>
-                <form action="{{ url_for('update_status', subtask_id=task.id) }}" method="POST" class="task-buttons">
-                    <button type="submit" name="status" value="done" class="btn done">✔ できた</button>
-                    <button type="submit" name="status" value="defer" class="btn tomorrow">→ あすへ</button>
-                    <button type="submit" name="status" value="skip" class="btn skip">✕ スキップ</button>
-                </form>
-            </section>
-        {% endif %}
-    {% endfor %}
-{% endfor %}
+<!-- 🔹未完了タスク -->
+  <h2 class="section-title">今日のやること</h2>
+  {% for task in incomplete_tasks %}
+    <section class="task-card">
+      <div class="task-header">
+        <div class="icon-area">🧹</div>
+        <div>
+          <h2>{{ task.category }}：{{ task.subtask }}</h2>
+          <p>{{ task.frequency }}</p>
+        </div>
+      </div>
+      <form action="{{ url_for('update_status', subtask_id=task.id) }}" method="POST" class="task-buttons">
+        <button type="submit" name="status" value="done" class="btn done">✔ できた</button>
+        <button type="submit" name="status" value="defer" class="btn tomorrow">→ あすへ</button>
+        <button type="submit" name="status" value="skip" class="btn skip">✕ スキップ</button>
+      </form>
+    </section>
+  {% endfor %}
+
+  <!-- 🔸完了タスク -->
+  <h2 class="section-title">完了済み</h2>
+  {% for task in completed_tasks %}
+    <section class="task-card completed">
+      <div class="task-header">
+        <div class="icon-area">✨</div>
+        <div>
+          <h2>{{ task.category }}：{{ task.subtask }}</h2>
+          <p>{{ task.frequency }}</p>
+        </div>
+      </div>
+      <p class="completed-text">✔ 完了しました！</p>
+    </section>
+  {% endfor %}
 
 
     <!-- 一言メッセージ -->
